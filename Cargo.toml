@@ -4,14 +4,45 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-cortex-m = "0.7.7"
-cortex-m-rt = "0.7.2"
-critical-section = "1.1.1"
-embedded-hal = "0.2.7"
-fugit = "0.3.6"
-heapless = "0.7.16"
-panic-halt = "0.2.0"
-rp-pico = "0.6.0"
-rp2040-hal = "0.7.0"
-smart-leds = "0.3.0"
-ws2812-pio = "0.5.0"
+cortex-m = "0.7"
+cortex-m-rt = "0.7"
+critical-section = "1.1"
+embedded-hal = "0.2"
+embedded-hal-nb = "1.0"
+fugit = "0.3"
+heapless = "0.7"
+panic-halt = "0.2"
+rp-pico = "0.6"
+smart-leds = "0.3"
+ws2812-pio = "0.5"
+
+[profile.dev]
+codegen-units = 1
+debug = 2
+debug-assertions = true
+incremental = false
+opt-level = 3
+overflow-checks = true
+
+[profile.release]
+codegen-units = 1
+debug = 2
+debug-assertions = false
+incremental = false
+lto = 'fat'
+opt-level = 3
+overflow-checks = false
+
+[profile.dev.build-override]
+codegen-units = 8
+debug = false
+debug-assertions = false
+opt-level = 0
+overflow-checks = false
+
+[profile.release.build-override]
+codegen-units = 8
+debug = false
+debug-assertions = false
+opt-level = 0
+overflow-checks = false
